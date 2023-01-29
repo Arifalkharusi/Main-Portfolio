@@ -6,6 +6,8 @@ const preLoader = document.querySelector(".pre-loader");
 const firstName = document.querySelector(".first-name");
 const lastName = document.querySelector(".last-name");
 const topScroll = document.querySelector(".scroll-top");
+const contactSection = document.getElementById("contact-section");
+const contactBtn = document.getElementById("contact-btn");
 
 // var
 let curSlide = 0;
@@ -23,11 +25,6 @@ const preLoaderFunc = () => {
   }, 2000);
 };
 // excecuted on load
-const onLoad = () => {
-  preLoaderFunc();
-  timer();
-  slideShow(0);
-};
 
 // slider fuctions
 const slideShow = function (slide) {
@@ -60,6 +57,11 @@ topScroll.addEventListener("click", () => {
   scroll({ top: 0, behavior: "smooth" });
 });
 
+contactBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  contactSection.scrollIntoView({ behavior: "smooth" });
+});
+
 silderLeftBtn.addEventListener("click", () => {
   if (curSlide < 1) return;
   curSlide--;
@@ -72,4 +74,6 @@ silderRightBtn.addEventListener("click", () => {
   moveSlide();
 });
 
-onLoad();
+preLoaderFunc();
+timer();
+slideShow(0);
