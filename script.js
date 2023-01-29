@@ -1,10 +1,17 @@
-const sliderShow = document.querySelectorAll(".slide-show");
+// selectors
+const sliderShow = document.querySelectorAll(".slide-content");
 const silderLeftBtn = document.querySelector(".slider-icon-left");
 const silderRightBtn = document.querySelector(".slider-icon-right");
 const preLoader = document.querySelector(".pre-loader");
 const firstName = document.querySelector(".first-name");
 const lastName = document.querySelector(".last-name");
+const topScroll = document.querySelector(".scroll-top");
 
+// var
+let curSlide = 0;
+let timy;
+
+// func
 const preLoaderFunc = () => {
   lastName.style.transform = "translateY(0)";
   firstName.style.transform = "translateX(0)";
@@ -15,35 +22,24 @@ const preLoaderFunc = () => {
     }, 1000);
   }, 2000);
 };
+// excecuted on load
+const onLoad = () => {
+  preLoaderFunc();
+  timer();
+  slideShow(0);
+};
 
-preLoaderFunc();
-
-let curSlide = 0;
-let timy;
 // slider fuctions
-const slidy = function (slide) {
+const slideShow = function (slide) {
   sliderShow.forEach(
     (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
   );
 };
-// set silder at postion 0 on load
-slidy(0);
 
 const moveSlide = () => {
-  slidy(curSlide);
+  slideShow(curSlide);
   timer();
 };
-
-silderLeftBtn.addEventListener("click", () => {
-  if (curSlide < 1) return;
-  curSlide--;
-  moveSlide();
-});
-silderRightBtn.addEventListener("click", () => {
-  if (curSlide === sliderShow.length - 1) return;
-  curSlide++;
-  moveSlide();
-});
 
 // slider timer fuction (every 7 sec, next slide)
 const timer = function () {
@@ -55,8 +51,25 @@ const timer = function () {
     } else {
       curSlide++;
     }
-    slidy(curSlide);
+    slideShow(curSlide);
   }, 7000);
 };
-// sets timer on load
-timer();
+
+// events
+topScroll.addEventListener("click", () => {
+  scroll({ top: 0, behavior: "smooth" });
+});
+
+silderLeftBtn.addEventListener("click", () => {
+  if (curSlide < 1) return;
+  curSlide--;
+  moveSlide();
+});
+
+silderRightBtn.addEventListener("click", () => {
+  if (curSlide === sliderShow.length - 1) return;
+  curSlide++;
+  moveSlide();
+});
+
+onLoad();
