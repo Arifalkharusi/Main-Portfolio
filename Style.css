@@ -50,7 +50,7 @@ body {
 }
 
 section {
-  padding: 80px 0;
+  padding: 50px 0;
 }
 .link {
   text-decoration: none;
@@ -162,8 +162,9 @@ header section {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: rgb(209, 209, 209); */
   border-radius: 50%;
+  height: 100px;
+  width: 100px;
   transition: all 0.25s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
@@ -174,7 +175,6 @@ header section {
 .header-right > div > div:hover {
   transform: translateY(-5px);
   transition: all 0.25s;
-  color: orange;
 }
 
 /* about-me */
@@ -202,6 +202,7 @@ header section {
   display: flex;
   align-items: flex-start;
   gap: 50px;
+  border-bottom: 1px grey dotted;
 }
 
 .featured-img {
@@ -409,6 +410,10 @@ form textarea:focus {
   .header-right > div {
     grid-template-columns: repeat(3, 80px);
     grid-template-rows: repeat(3, 80px);
+  }
+  .header-right > div > div {
+    height: 80px;
+    width: 80px;
   }
 }
 
